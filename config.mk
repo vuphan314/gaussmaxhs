@@ -1,10 +1,10 @@
 BUILD_DIR?=build
 MAXHS_RELSYM?=-g
-MAXHS_REL?=-O3
-MAXHS_DEB?=-O0-D_GLIBCXX_DEBUG -ggdb
-MAXHS_PRF?=-O3
-LINUX_CPLEXLIBDIR?=/opt/ibm/ILOG/CPLEX_Studio128/cplex/lib/x86-64_linux/static_pic
-LINUX_CPLEXINCDIR?=/opt/ibm/ILOG/CPLEX_Studio128/cplex/include
+MAXHS_REL?=-O3 -DONLY_TOPLEVEL
+MAXHS_DEB?=-O0 -D_GLIBCXX_DEBUG -ggdb
+MAXHS_PRF?=-O3 -DONLY_TOPLEVEL
+LINUX_CPLEXLIBDIR?=/opt/ibm/ILOG/CPLEX_Studio201/cplex/lib/x86-64_linux/static_pic
+LINUX_CPLEXINCDIR?=/opt/ibm/ILOG/CPLEX_Studio201/cplex/include
 DARWIN_CPLEXLIBDIR?=/Users/fbacchus/Applications/IBM/ILOG/CPLEX_Studio127/cplex/lib/x86-64_osx/static_pic/
 DARWIN_CPLEXINCDIR?=/Users/fbacchus/Applications/IBM/ILOG/CPLEX_Studio127/cplex/include
 prefix?=/usr/local
