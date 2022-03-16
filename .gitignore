@@ -1,1 +1,11 @@
-build/
+build/release/bin/__pycache__/
+build/release/bin/*.cnf
+build/release/bin/*.grid
+build/release/bin/maxhs
+build/release/bin/mylist
+build/release/bin/mylist2
+build/release/bin/network-reliability/*.cnf
+build/release/bin/problems/
+build/release/lib/
+build/release/maxhs/
+build/release/minisat/

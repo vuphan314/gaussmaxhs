@@ -85,6 +85,7 @@ for forig in `cat mylist2` ;do
         rm -f "${preset}.timeoutorig"
         rm -f "${preset}.timeoutnew"
 
+        mkdir -p problems
         mv "${preset}_wcnf_xor_blasted_nox" "problems/"
         mv "${preset}_wcnf_xor_blasted" "problems/"
 
