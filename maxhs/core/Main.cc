@@ -42,8 +42,8 @@ static void SIGINT_exit(int signum) {
         fflush(stdout);
         fflush(stderr);
         // Note that '_exit()' rather than 'exit()' has to be used.
-        // The reason is that 'exit()' calls destructors and may cause deadlocks 
-        // if a malloc/free function happens to be running (these functions are guarded by 
+        // The reason is that 'exit()' calls destructors and may cause deadlocks
+        // if a malloc/free function happens to be running (these functions are guarded by
         //  locks for multithreaded use).
         _exit(0);
     }
@@ -56,16 +56,16 @@ const int update {0};
 int main(int argc, char** argv) {
   try {
     setUsageHelp("USAGE: %s [options] <input-file>\n  where input may be either in plain or gzipped DIMACS.\n");
-    
+
 #if defined(__linux__)
     fpu_control_t oldcw, newcw;
     _FPU_GETCW(oldcw); newcw = (oldcw & ~_FPU_EXTENDED) | _FPU_DOUBLE; _FPU_SETCW(newcw);
 #endif
-    
+
     IntOption    cpu_lim("A: General MaxHS", "cpu-lim","Limit on CPU time allowed in seconds.\n", INT32_MAX, IntRange(0, INT32_MAX));
     IntOption    mem_lim("A: General MaxHS", "mem-lim","Limit on memory usage in megabytes.\n", INT32_MAX, IntRange(0, INT32_MAX));
     BoolOption   version("A: General MaxHS", "version", "Print version number and exit", false);
-    
+
     parseOptions(argc, argv, true);
     params.readOptions();
     if(version) {
@@ -74,18 +74,18 @@ int main(int argc, char** argv) {
     }
     cout << "c MaxHS " << majorVer << "." << minorVer << "." << update << "\n";
     cout << "c Instance: " << argv[argc-1] << "\n";
-    cout << "c Parameter Settings\n";
-    cout << "c ============================================\n";
-    printOptionSettings("c ", cout);
-    cout << "c ============================================\n";
-    cout << "c\n";
+    // cout << "c Parameter Settings\n";
+    // cout << "c ============================================\n";
+    // printOptionSettings("c ", cout);
+    // cout << "c ============================================\n";
+    // cout << "c\n";
 
     /*signal(SIGINT, SIGINT_exit);
     signal(SIGXCPU, SIGINT_exit);
     signal(SIGSEGV, SIGINT_exit);
     signal(SIGTERM, SIGINT_exit);
     signal(SIGABRT, SIGINT_exit);*/
-    
+
     if (cpu_lim != INT32_MAX){
       rlimit rl;
       getrlimit(RLIMIT_CPU, &rl);
@@ -94,7 +94,7 @@ int main(int argc, char** argv) {
 	if (setrlimit(RLIMIT_CPU, &rl) == -1)
 	  cout << "c WARNING! Could not set resource limit: CPU-time.\n";
       } }
-    
+
     if (mem_lim != INT32_MAX){
       rlim_t new_mem_lim = (rlim_t)mem_lim * 1024*1024;
       rlimit rl;
@@ -104,7 +104,7 @@ int main(int argc, char** argv) {
 	if (setrlimit(RLIMIT_AS, &rl) == -1)
 	  cout << "c WARNING! Could not set resource limit: Virtual memory.\n";
       } }
-    
+
     if(argc < 2) {
       cout << "c ERROR: no input file specfied:\n"
 	"USAGE: %s [options] <input-file>\n  where input may be either in plain or gzipped DIMACS.\n";
@@ -112,7 +112,7 @@ int main(int argc, char** argv) {
     }
 
     Wcnf theFormula {};
-    if (!theFormula.inputDimacs(argv[1])) 
+    if (!theFormula.inputDimacs(argv[1]))
       return 1;
 
     /*cout << "Different wts " << theFormula.nDiffWts() << " = " << theFormula.getDiffWts() << "\n";
@@ -140,7 +140,7 @@ int main(int argc, char** argv) {
   catch (...) {
     cout << "c Unknown exception probably memory.\n";
     thesolver->printStatsAndExit(200, 1);
-  } 
+  }
   fflush(stdout);
   fflush(stderr);
   return 0;
