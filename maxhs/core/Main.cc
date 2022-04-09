@@ -73,7 +73,7 @@ int main(int argc, char** argv) {
       return(0);
     }
     cout << "c MaxHS " << majorVer << "." << minorVer << "." << update << "\n";
-    cout << "c Instance: " << argv[argc-1] << "\n";
+    // cout << "c Instance: " << argv[argc-1] << "\n";
     // cout << "c Parameter Settings\n";
     // cout << "c ============================================\n";
     // printOptionSettings("c ", cout);

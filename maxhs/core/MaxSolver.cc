@@ -1264,7 +1264,7 @@ void MaxSolver::processMutexes() {
 
   vector<int> in_cplex (bvars.maxvar()+1, 0);
   for(auto cls : cplexClauses) //not yet feed into cplex
-    for(auto l : cls) 
+    for(auto l : cls)
       in_cplex[var(l)] = 1;
     for(size_t i=0; i < in_cplex.size(); i++) //already in cplex
     if(cplex->var_in_cplex(i))
@@ -1829,7 +1829,7 @@ void MaxSolver::addHards(SatSolver* slv) {
           return;
         }
     } else {
-        cout << "Adding hard XOR" << endl;
+        // cout << "Adding hard XOR" << endl;
         if (!slv->addXorClause(x)) {
           cout << "c Adding hard XOR clauses caused unsat.\n";
           return;
